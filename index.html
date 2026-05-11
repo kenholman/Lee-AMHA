@@ -87,7 +87,7 @@
     position: absolute; inset: 0;
     background:
       linear-gradient(to bottom, rgba(10,22,40,0.3) 0%, rgba(10,22,40,0.7) 60%, rgba(10,22,40,1) 100%),
-      url('lee-hero.jpg') center top/cover no-repeat;
+      url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1600&q=80') center/cover no-repeat;
   }
   #hero .content {
     position: relative;
@@ -574,7 +574,7 @@
         <h2 class="section-title">About<br>Lee</h2>
         <div class="gold-rule"></div>
         <p>Lee is an upcoming 8th-grade forward trying out for the Austin Capitals 14U travel squad in the Austin Metro Hockey League. He brings speed, compete level, and a relentless work ethic every time he steps on the ice.</p>
-        <p>Tryouts begin in June. This page will track every game, every goal, and every moment of the 2026&ndash;2027 season as it unfolds.</p>
+        <p>Tryouts begin in June. This page will track every game, every goal, and every moment of the 2025&ndash;2026 season as it unfolds.</p>
         <div class="about-badges">
           <span class="badge">Forward</span>
           <span class="badge">14U</span>
@@ -654,7 +654,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>Go <strong>Capitals</strong> &mdash; Austin Metro Hockey League &mdash; 2026&ndash;2026</p>
+  <p>Go <strong>Capitals</strong> &mdash; Austin Metro Hockey League &mdash; 2026&ndash;2027</p>
 </footer>
 
 <script>
@@ -698,8 +698,7 @@ async function loadStats() {
     const res = await fetch(csvUrl(STATS_GID));
     const text = await res.text();
     const rows = parseCSV(text);
-    const headers = rows[0];
-    const data = rows.slice(1).filter(r => r[0]);
+    const data = rows.slice(1).filter(r => r[0] || r[1]).map(r => r[0] ? r : r.slice(1));
 
     // Totals
     let gp=0, g=0, a=0, pm=0, pim=0, ppg=0, shg=0;
@@ -757,7 +756,9 @@ async function loadSchedule(statsText) {
   try {
     const res = await fetch(csvUrl(SCHED_GID));
     const text = await res.text();
-    renderSchedule(parseCSV(text).slice(1).filter(r => r[0]));
+    const rows = parseCSV(text).slice(1);
+    const data = rows.filter(r => r[0] || r[1]).map(r => r[0] ? r : r.slice(1));
+    renderSchedule(data);
   } catch(e) {
     renderSampleSchedule();
   }
