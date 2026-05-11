@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lee | Austin Capitals 14U</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0a1220;
+    --navy-mid: #0f1c30;
+    --navy-light: #162540;
+    --blue: #3daee0;
+    --blue-bright: #60c8f5;
+    --blue-dim: #1d6e96;
+    --cream: #d4c9a8;
+    --cream-bright: #ede3c8;
+    --cream-dim: #8a7f60;
+    --white: #f5f3ef;
+    --off-white: #ccc7ba;
+    --ice: #e8f4fd;
+    --text-muted: #6a88a8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(61,174,224,0.2);
+  }
+  nav .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    color: var(--blue-bright);
+    text-decoration: none;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+  nav ul a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--off-white);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--blue-bright); }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  #hero .bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(10,22,40,0.3) 0%, rgba(10,22,40,0.7) 60%, rgba(10,22,40,1) 100%),
+      url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1600&q=80') center/cover no-repeat;
+  }
+  #hero .content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 2rem;
+  }
+  #hero .eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1rem;
+  }
+  #hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 15vw, 11rem);
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+    color: var(--white);
+    text-shadow: 0 4px 40px rgba(0,0,0,0.6);
+  }
+  #hero h1 span { color: var(--cream-bright); }
+  #hero .subtitle {
+    margin-top: 1.2rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--off-white);
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--blue), transparent);
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 2rem; }
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .gold-rule {
+    width: 60px;
+    height: 3px;
+    background: var(--cream);
+    margin-bottom: 2.5rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--navy); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-photo-wrap {
+    position: relative;
+  }
+  .about-photo-wrap::before {
+    content: '';
+    position: absolute;
+    top: -16px; left: -16px;
+    width: 100%; height: 100%;
+    border: 2px solid var(--blue);
+    border-radius: 2px;
+    z-index: 0;
+  }
+  .about-photo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 3/4;
+    background:
+      linear-gradient(to bottom, rgba(10,22,40,0.1) 0%, rgba(10,22,40,0.5) 100%),
+      url('https://images.unsplash.com/photo-1515703407324-5f753afd8be8?w=800&q=80') center/cover;
+    border-radius: 2px;
+  }
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--off-white);
+    margin-bottom: 1.2rem;
+  }
+  .about-badges {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .badge {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border: 1px solid var(--cream-dim);
+    color: var(--cream-bright);
+    border-radius: 2px;
+  }
+
+  /* ── STATS ── */
+  #stats {
+    background: var(--navy-mid);
+    position: relative;
+    overflow: hidden;
+  }
+  #stats::before {
+    content: 'STATS';
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18rem;
+    color: rgba(61,174,224,0.04);
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+  }
+  .stats-meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+  }
+  #stats-status {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    padding: 0.25rem 0.75rem;
+    background: rgba(61,174,224,0.1);
+    border: 1px solid rgba(61,174,224,0.3);
+    color: var(--blue);
+    border-radius: 2px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+  .stat-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+  }
+  .stat-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(61,174,224,0.15);
+    border-radius: 2px;
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .stat-card:hover {
+    border-color: rgba(61,174,224,0.45);
+    background: rgba(61,174,224,0.06);
+  }
+  .stat-card .val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--blue-bright);
+    line-height: 1;
+    display: block;
+  }
+  .stat-card .lbl {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    display: block;
+  }
+  .stats-table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.9rem;
+  }
+  thead tr {
+    border-bottom: 2px solid var(--blue-dim);
+  }
+  thead th {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue);
+    padding: 0.6rem 1rem;
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: rgba(61,174,224,0.05); }
+  tbody td {
+    padding: 0.75rem 1rem;
+    color: var(--off-white);
+    white-space: nowrap;
+  }
+  tbody td:first-child {
+    font-weight: 600;
+    color: var(--white);
+  }
+  .tfoot-row td {
+    font-weight: 700;
+    color: var(--blue-bright);
+    border-top: 2px solid var(--blue-dim);
+    padding-top: 1rem;
+  }
+  .loading-msg {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    padding: 2rem 0;
+  }
+
+  /* ── SCHEDULE ── */
+  #schedule { background: var(--navy); }
+  .schedule-list { display: flex; flex-direction: column; gap: 1px; }
+  .game-row {
+    display: grid;
+    grid-template-columns: 80px 1fr auto auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    background: rgba(255,255,255,0.02);
+    border-left: 3px solid transparent;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .game-row:hover {
+    background: rgba(61,174,224,0.05);
+    border-left-color: var(--blue);
+  }
+  .game-row.win  { border-left-color: #2a7a4f; }
+  .game-row.loss { border-left-color: #8a2a2a; }
+  .game-row.upcoming { border-left-color: rgba(61,174,224,0.3); }
+  .game-date {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    line-height: 1.1;
+  }
+  .game-date span {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+  }
+  .game-info .opponent {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+  .game-info .venue {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+  .game-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    text-align: right;
+  }
+  .game-score.win  { color: #4caf76; }
+  .game-score.loss { color: #e05555; }
+  .game-score.upcoming { color: var(--text-muted); font-size: 1rem; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.1em; }
+  .result-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    min-width: 50px;
+    text-align: center;
+  }
+  .result-tag.win  { background: rgba(42,122,79,0.2); color: #4caf76; border: 1px solid rgba(42,122,79,0.4); }
+  .result-tag.loss { background: rgba(138,42,42,0.2); color: #e05555; border: 1px solid rgba(138,42,42,0.4); }
+  .result-tag.upcoming { background: rgba(61,174,224,0.1); color: var(--blue); border: 1px solid rgba(61,174,224,0.3); }
+
+  /* ── GALLERY ── */
+  #gallery {
+    background: var(--navy-mid);
+    padding: 6rem 2rem;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 0.75rem;
+  }
+  .gallery-grid .gitem {
+    overflow: hidden;
+    border-radius: 2px;
+    aspect-ratio: 4/3;
+    background: var(--navy-light);
+    position: relative;
+  }
+  .gallery-grid .gitem:first-child {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+  .gallery-grid .gitem img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+  .gallery-grid .gitem:hover img { transform: scale(1.04); }
+  .gallery-placeholder {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy-light);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.03);
+    border: 1px dashed rgba(255,255,255,0.1);
+  }
+
+  /* ── VERSE ── */
+  #verse {
+    position: relative;
+    padding: 8rem 2rem;
+    text-align: center;
+    overflow: hidden;
+    background:
+      linear-gradient(to bottom, rgba(10,22,40,0.7) 0%, rgba(10,22,40,0.6) 100%),
+      url('https://images.unsplash.com/photo-1580136579312-94651dfd596d?w=1600&q=80') center/cover fixed;
+  }
+  #verse blockquote {
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+  }
+  #verse blockquote::before {
+    content: '\201C';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 10rem;
+    color: rgba(61,174,224,0.2);
+    position: absolute;
+    top: -3rem;
+    left: -2rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+  #verse p {
+    font-family: 'Barlow', sans-serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    line-height: 1.5;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  #verse cite {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--blue-bright);
+    font-style: normal;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060e1a;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(61,174,224,0.15);
+  }
+  footer p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  footer strong { color: var(--blue); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav ul { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid .gitem:first-child { grid-column: span 2; }
+    .game-row { grid-template-columns: 60px 1fr auto; }
+    .result-tag { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="logo">Lee #88; | Capitals 14U</a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#stats">Stats</a></li>
+    <li><a href="#schedule">Schedule</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="bg"></div>
+  <div class="content">
+    <p class="eyebrow">Austin Capitals &mdash; 14U &mdash; Forward</p>
+    <h1>LEE<br><span>PLAYS</span></h1>
+    <p class="subtitle">Austin Metro Hockey League &mdash; 2025&ndash;2026 Season</p>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-wrap">
+        <div class="about-photo"></div>
+      </div>
+      <div class="about-text">
+        <p class="section-label">The Player</p>
+        <h2 class="section-title">About<br>Lee</h2>
+        <div class="gold-rule"></div>
+        <p>Lee is a 7th-grade forward trying out for the Austin Capitals 14U travel squad in the Austin Metro Hockey League. He brings speed, compete level, and a relentless work ethic every time he steps on the ice.</p>
+        <p>Tryouts begin in June. This page will track every game, every goal, and every moment of the 2025&ndash;2026 season as it unfolds.</p>
+        <div class="about-badges">
+          <span class="badge">Forward</span>
+          <span class="badge">14U</span>
+          <span class="badge">Austin Capitals</span>
+          <span class="badge">AMHL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <p class="section-label">2025&ndash;2026 Season</p>
+    <h2 class="section-title">Stats</h2>
+    <div class="gold-rule"></div>
+    <p class="stats-meta">
+      Live data via Google Sheets &mdash; updates automatically
+      <span id="stats-status">Loading&hellip;</span>
+    </p>
+
+    <!-- Summary cards -->
+    <div class="stat-cards" id="stat-cards">
+      <div class="stat-card"><span class="val" id="c-gp">—</span><span class="lbl">GP</span></div>
+      <div class="stat-card"><span class="val" id="c-g">—</span><span class="lbl">Goals</span></div>
+      <div class="stat-card"><span class="val" id="c-a">—</span><span class="lbl">Assists</span></div>
+      <div class="stat-card"><span class="val" id="c-pts">—</span><span class="lbl">Points</span></div>
+      <div class="stat-card"><span class="val" id="c-pm">—</span><span class="lbl">+/&minus;</span></div>
+      <div class="stat-card"><span class="val" id="c-pim">—</span><span class="lbl">PIM</span></div>
+      <div class="stat-card"><span class="val" id="c-ppg">—</span><span class="lbl">PP Goals</span></div>
+      <div class="stat-card"><span class="val" id="c-shg">—</span><span class="lbl">SH Goals</span></div>
+    </div>
+
+    <!-- Game-by-game table -->
+    <div class="stats-table-wrap">
+      <div id="stats-table-container"><p class="loading-msg">Fetching stats&hellip;</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="container">
+    <p class="section-label">2025&ndash;2026</p>
+    <h2 class="section-title">Schedule</h2>
+    <div class="gold-rule"></div>
+    <div class="schedule-list" id="schedule-list">
+      <p class="loading-msg">Fetching schedule&hellip;</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <p class="section-label">On the Ice</p>
+    <h2 class="section-title">Gallery</h2>
+    <div class="gold-rule"></div>
+    <div class="gallery-grid">
+      <div class="gitem"><div class="gallery-placeholder">Photo coming soon</div></div>
+      <div class="gitem"><div class="gallery-placeholder">Photo coming soon</div></div>
+      <div class="gitem"><div class="gallery-placeholder">Photo coming soon</div></div>
+      <div class="gitem"><div class="gallery-placeholder">Photo coming soon</div></div>
+      <div class="gitem"><div class="gallery-placeholder">Photo coming soon</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VERSE -->
+<section id="verse">
+  <blockquote>
+    <p>"Whatever you do, work at it with all your heart, as working for the Lord, not for human masters."</p>
+    <cite>Colossians 3:23</cite>
+  </blockquote>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Go <strong>Capitals</strong> &mdash; Austin Metro Hockey League &mdash; 2025&ndash;2026</p>
+</footer>
+
+<script>
+// ─────────────────────────────────────────────────────────────────────
+//  CONFIGURATION — replace SHEET_ID with your published Google Sheet ID
+//  Stats sheet:    columns = Date, Opponent, GF, GA, G, A, +/-, PIM, PPG, SHG, GWG
+//  Schedule sheet: columns = Date, Opponent, Location, Result, GF, GA
+// ─────────────────────────────────────────────────────────────────────
+const SHEET_ID   = '1zZt8bkcAjkQjB-QpITyjl57otbJum33GRUEgDFttOhA';
+const STATS_GID  = '0';      // gid of the Stats tab
+const SCHED_GID  = '1';      // gid of the Schedule tab
+
+function csvUrl(gid) {
+  return `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${gid}`;
+}
+
+function parseCSV(text) {
+  return text.trim().split('\n').map(line => {
+    const cols = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      if (line[i] === '"') { inQ = !inQ; continue; }
+      if (line[i] === ',' && !inQ) { cols.push(cur.trim()); cur = ''; continue; }
+      cur += line[i];
+    }
+    cols.push(cur.trim());
+    return cols;
+  });
+}
+
+// ─── STATS ───
+async function loadStats() {
+  if (SHEET_ID === 'YOUR_GOOGLE_SHEET_ID_HERE') {
+    document.getElementById('stats-status').textContent = 'Add your Sheet ID to enable live data';
+    document.getElementById('stats-table-container').innerHTML =
+      '<p class="loading-msg">Configure SHEET_ID in the script to pull live data.</p>';
+    loadSchedule(null);
+    return;
+  }
+  try {
+    const res = await fetch(csvUrl(STATS_GID));
+    const text = await res.text();
+    const rows = parseCSV(text);
+    const headers = rows[0];
+    const data = rows.slice(1).filter(r => r[0]);
+
+    // Totals
+    let gp=0, g=0, a=0, pm=0, pim=0, ppg=0, shg=0;
+    data.forEach(r => {
+      gp++;
+      g   += parseInt(r[4])||0;
+      a   += parseInt(r[5])||0;
+      pm  += parseInt(r[6])||0;
+      pim += parseInt(r[7])||0;
+      ppg += parseInt(r[8])||0;
+      shg += parseInt(r[9])||0;
+    });
+    document.getElementById('c-gp').textContent  = gp;
+    document.getElementById('c-g').textContent   = g;
+    document.getElementById('c-a').textContent   = a;
+    document.getElementById('c-pts').textContent = g+a;
+    document.getElementById('c-pm').textContent  = (pm >= 0 ? '+' : '') + pm;
+    document.getElementById('c-pim').textContent = pim;
+    document.getElementById('c-ppg').textContent = ppg;
+    document.getElementById('c-shg').textContent = shg;
+    document.getElementById('stats-status').textContent = 'Live';
+
+    // Table
+    let html = `<table>
+      <thead><tr>
+        <th>Date</th><th>Opponent</th><th>Score</th>
+        <th>G</th><th>A</th><th>PTS</th><th>+/−</th><th>PIM</th><th>PPG</th><th>SHG</th>
+      </tr></thead><tbody>`;
+    data.forEach(r => {
+      const score = `${r[2]}–${r[3]}`;
+      const pts   = (parseInt(r[4])||0) + (parseInt(r[5])||0);
+      html += `<tr>
+        <td>${r[0]}</td><td>${r[1]}</td><td>${score}</td>
+        <td>${r[4]||0}</td><td>${r[5]||0}</td><td>${pts}</td>
+        <td>${r[6]||0}</td><td>${r[7]||0}</td><td>${r[8]||0}</td><td>${r[9]||0}</td>
+      </tr>`;
+    });
+    html += `<tr class="tfoot-row">
+      <td colspan="3">Season Totals</td>
+      <td>${g}</td><td>${a}</td><td>${g+a}</td>
+      <td>${(pm >= 0 ? '+' : '') + pm}</td><td>${pim}</td><td>${ppg}</td><td>${shg}</td>
+    </tr></tbody></table>`;
+    document.getElementById('stats-table-container').innerHTML = html;
+    loadSchedule(text);
+  } catch(e) {
+    document.getElementById('stats-status').textContent = 'Error loading';
+    document.getElementById('stats-table-container').innerHTML =
+      '<p class="loading-msg">Could not load stats. Check your Sheet ID and sharing settings.</p>';
+    loadSchedule(null);
+  }
+}
+
+// ─── SCHEDULE ───
+async function loadSchedule(statsText) {
+  try {
+    const res = await fetch(csvUrl(SCHED_GID));
+    const text = await res.text();
+    renderSchedule(parseCSV(text).slice(1).filter(r => r[0]));
+  } catch(e) {
+    renderSampleSchedule();
+  }
+}
+
+function renderSchedule(rows) {
+  if (!rows || !rows.length) { renderSampleSchedule(); return; }
+  const list = document.getElementById('schedule-list');
+  list.innerHTML = '';
+  rows.forEach(r => {
+    const result = (r[3] || '').toLowerCase();
+    const cls = result === 'w' ? 'win' : result === 'l' ? 'loss' : 'upcoming';
+    const tag = cls === 'win' ? 'W' : cls === 'loss' ? 'L' : 'TBD';
+    const score = (r[4] && r[5]) ? `${r[4]}–${r[5]}` : '&mdash;';
+    const dateStr = r[0].split(' ');
+    list.innerHTML += `
+      <div class="game-row ${cls}">
+        <div class="game-date">${dateStr[0]}<span>${dateStr[1]||''}</span></div>
+        <div class="game-info">
+          <div class="opponent">vs. ${r[1]}</div>
+          <div class="venue">${r[2]||''}</div>
+        </div>
+        <div class="game-score ${cls}">${score}</div>
+        <span class="result-tag ${cls}">${tag}</span>
+      </div>`;
+  });
+}
+
+function renderSampleSchedule() {
+  const sample = [
+    ['Sep 14','Westlake Wings','Cedar Park Ice',  'upcoming','',''],
+    ['Sep 21','Round Rock Rink Rats','Chaparral Ice','upcoming','',''],
+    ['Oct 5', 'San Antonio Rampage','Cedar Park Ice','upcoming','',''],
+  ];
+  renderSchedule(sample);
+}
+
+loadStats();
+</script>
+</body>
+</html>
